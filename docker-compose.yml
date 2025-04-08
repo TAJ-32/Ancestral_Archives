@@ -1,12 +1,20 @@
 services:
+  setup:
+    image: alpine:latest
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: ["/bin/sh", "-c"]
+    command: chmod +x generate_env.sh start.sh
+    
   db:
     image: postgres:latest
     container_name: db
     restart: always
     environment:
-      POSTGRES_DB: ancestral_archives
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin_access989
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
@@ -19,7 +27,7 @@ services:
     depends_on:
       - db
     env_file:
-      - backend/.env
+      - .env
     volumes:
       - ./backend/src:/app
     ports:
