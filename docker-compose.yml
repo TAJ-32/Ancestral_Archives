@@ -1,39 +1,39 @@
 services:
-  setup:
-    image: alpine:latest
-    volumes:
-      - .:/app
-    working_dir: /app
-    entrypoint: ["/bin/sh", "-c"]
-    command: chmod +x generate_env.sh start.sh
-    
   db:
     image: postgres:latest
     container_name: db
     restart: always
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
+      - ./db/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./backend/.env
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
 
   backend:
-    build: ./backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: backend
-    restart: always
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: always
     env_file:
-      - .env
+      - ./backend/.env
     volumes:
       - ./backend/src:/app
     ports:
       - "8000:8000"
     command: >
-      sh -c "python manage.py migrate &&
+      sh -c "./wait-for-it.sh db:5432 -- python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
 
   nginx:
