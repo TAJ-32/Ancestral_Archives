@@ -5,85 +5,159 @@ And serializes the data to convert db objects into JSON
 """
 
 from pydantic import BaseModel
-
-
-from pydantic import BaseModel
 from typing import Optional, List
 from datetime import date
 
-"""
-We have to make the base models for every table here
-because this will define how it is sent and receied via API
-The models.py file defines how data is stored in the database
-So it seems like we are doing it twice but it serves different purposes
-"""
+# ---------- PERSON ----------
 class PersonBase(BaseModel):
     first_name: str
     last_name: str
-    age: Optional[int] = None
-    birth_date: Optional[date] = None
-    country_origin: Optional[str] = None
-    state_origin: Optional[str] = None
-    city_origin: Optional[str] = None
-    country_current: Optional[str] = None
-    state_current: Optional[str] = None
-    city_current: Optional[str] = None
-
+    age: int
+    birth_date: date
+    country_origin: str
+    state_origin: str
+    city_origin: str
+    country_current: str
+    state_current: str
+    city_current: str
 
 class PersonCreate(PersonBase):
-    pass  # Used for creating a new person
+    pass
 
-
-class PersonResponse(PersonBase):
-    person_id: int
+class Person(PersonBase):
+    id: int  # Assuming Django default ID field is used
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
+# ---------- BIO ----------
 class BioBase(BaseModel):
     bio: str
-
+    person_id: int
 
 class BioCreate(BioBase):
-    person_id: int
+    pass
 
-
-class BioResponse(BioBase):
-    bio_id: int
-    person_id: int
+class Bio(BioBase):
+    id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
+# ---------- STORY ----------
 class StoryBase(BaseModel):
     story_name: str
     story_text: str
-
+    person_id: int
 
 class StoryCreate(StoryBase):
-    person_id: int
+    pass
 
-
-class StoryResponse(StoryBase):
-    story_id: int
-    person_id: int
+class Story(StoryBase):
+    id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
+# ---------- COUNTRY ----------
 class CountryBase(BaseModel):
     country_name: str
-
 
 class CountryCreate(CountryBase):
     pass
 
-
-class CountryResponse(CountryBase):
-    country_id: int
+class Country(CountryBase):
+    id: int
 
     class Config:
-        from_attributes = True
+        orm_mode = True
+
+
+# ---------- STATE ----------
+class StateBase(BaseModel):
+    state_name: str
+    country_id: int
+
+class StateCreate(StateBase):
+    pass
+
+class State(StateBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+# ---------- CITY ----------
+class CityBase(BaseModel):
+    city_name: str
+    country_id: int
+    state_id: int
+
+class CityCreate(CityBase):
+    pass
+
+class City(CityBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+# ---------- RELIGION ----------
+class ReligionBase(BaseModel):
+    religion_name: str
+
+class ReligionCreate(ReligionBase):
+    pass
+
+class Religion(ReligionBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+# ---------- RACE ----------
+class RaceBase(BaseModel):
+    race_name: str
+
+class RaceCreate(RaceBase):
+    pass
+
+class Race(RaceBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+# ---------- ETHNICITY ----------
+class EthnicityBase(BaseModel):
+    ethnicity_name: str
+
+class EthnicityCreate(EthnicityBase):
+    pass
+
+class Ethnicity(EthnicityBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+# ---------- GENDER ----------
+class GenderBase(BaseModel):
+    gender_name: str
+
+class GenderCreate(GenderBase):
+    pass
+
+class Gender(GenderBase):
+    id: int
+
+    class Config:
+        orm_mode = True

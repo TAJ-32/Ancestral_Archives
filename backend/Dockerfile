@@ -12,4 +12,4 @@ COPY ./wait-for-it.sh /app/wait-for-it.sh
 RUN chmod +x /app/wait-for-it.sh
 RUN chmod 644 /app/.env
 
-CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]

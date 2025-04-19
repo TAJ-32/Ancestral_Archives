@@ -4,49 +4,96 @@ Used by API routes to create, read, update, and delete data
 Separates the logic between the database and FastAPI endpoints
 """
 
-from sqlalchemy.orm import Session
-import models, schemas
+from . import models, schemas
+from django.db import transaction
 
-# 1️⃣ Create a new person
-def create_person(db: Session, person: schemas.PersonCreate):
-    db_person = models.Person(**person.model_dump())
-    db.add(db_person)
-    db.commit()
-    db.refresh(db_person)
-    return db_person
+# ----- PERSON -----
+def create_person(person_data: schemas.PersonCreate) -> models.Person:
+    with transaction.atomic():
+        return models.Person.objects.create(**person_data.dict())
 
-# 2️⃣ Get all persons (with optional pagination)
-def get_persons(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(models.Person).offset(skip).limit(limit).all()
+def get_all_people():
+    return models.Person.objects.all()
 
-# 3️⃣ Get a single person by ID
-def get_person(db: Session, person_id: int):
-    return db.query(models.Person).filter(models.Person.person_id == person_id).first()
 
-# 4️⃣ Create a bio for a person
-def create_bio(db: Session, bio: schemas.BioCreate):
-    db_bio = models.Bio(**bio.model_dump())
-    db.add(db_bio)
-    db.commit()
-    db.refresh(db_bio)
-    return db_bio
+# ----- BIO -----
+def create_bio(bio_data: schemas.BioCreate) -> models.Bio:
+    with transaction.atomic():
+        return models.Bio.objects.create(**bio_data.dict())
 
-# 5️⃣ Get all bios
-def get_bios(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(models.Bio).offset(skip).limit(limit).all()
+def get_all_bios():
+    return models.Bio.objects.all()
 
-# 6️⃣ Create a story for a person
-def create_story(db: Session, story: schemas.StoryCreate):
-    db_story = models.Story(**story.model_dump())
-    db.add(db_story)
-    db.commit()
-    db.refresh(db_story)
-    return db_story
 
-# 7️⃣ Get all stories
-def get_stories(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(models.Story).offset(skip).limit(limit).all()
+# ----- STORY -----
+def create_story(story_data: schemas.StoryCreate) -> models.Story:
+    with transaction.atomic():
+        return models.Story.objects.create(**story_data.dict())
 
-# 8️⃣ Get a specific story
-def get_story(db: Session, story_id: int):
-    return db.query(models.Story).filter(models.Story.story_id == story_id).first()
+def get_all_stories():
+    return models.Story.objects.all()
+
+
+# ----- COUNTRY -----
+def create_country(country_data: schemas.CountryCreate) -> models.Country:
+    with transaction.atomic():
+        return models.Country.objects.create(**country_data.dict())
+
+def get_all_countries():
+    return models.Country.objects.all()
+
+
+# ----- STATE -----
+def create_state(state_data: schemas.StateCreate) -> models.State:
+    with transaction.atomic():
+        return models.State.objects.create(**state_data.dict())
+
+def get_all_states():
+    return models.State.objects.all()
+
+
+# ----- CITY -----
+def create_city(city_data: schemas.CityCreate) -> models.City:
+    with transaction.atomic():
+        return models.City.objects.create(**city_data.dict())
+
+def get_all_cities():
+    return models.City.objects.all()
+
+
+# ----- RELIGION -----
+def create_religion(religion_data: schemas.ReligionCreate) -> models.Religion:
+    with transaction.atomic():
+        return models.Religion.objects.create(**religion_data.dict())
+
+def get_all_religions():
+    return models.Religion.objects.all()
+
+
+# ----- RACE -----
+def create_race(race_data: schemas.RaceCreate) -> models.Race:
+    with transaction.atomic():
+        return models.Race.objects.create(**race_data.dict())
+
+def get_all_races():
+    return models.Race.objects.all()
+
+
+# ----- ETHNICITY -----
+def create_ethnicity(ethnicity_data: schemas.EthnicityCreate) -> models.Ethnicity:
+    with transaction.atomic():
+        return models.Ethnicity.objects.create(**ethnicity_data.dict())
+
+def get_all_ethnicities():
+    return models.Ethnicity.objects.all()
+
+
+# ----- GENDER -----
+def create_gender(gender_data: schemas.GenderCreate) -> models.Gender:
+    with transaction.atomic():
+        return models.Gender.objects.create(**gender_data.dict())
+
+def get_all_genders():
+    return models.Gender.objects.all()
+
+

@@ -1,18 +1,22 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
-from . import models, db_config, schemas, crud
+from fastapi import FastAPI, HTTPException
+from typing import List
+from . import crud, schemas
+import django
+import os
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
+django.setup()
 
 app = FastAPI()
 
-# Create database tables
-models.Base.metadata.create_all(bind=db_config.engine)
+@app.get("/people", response_model=List[schemas.Person])
+def list_people():
+    people = crud.get_all_people()
+    return people
 
-# Route to create a user
-@app.post("/person/", response_model=schemas.UserResponse)
-def create_new_user(user: schemas.UserCreate, db: Session = Depends(db_config.get_db)):
-    return crud.create_person(db, user)
-
-# Route to get users
-@app.get("/person/", response_model=list[schemas.UserResponse])
-def read_users(skip: int = 0, limit: int = 10, db: Session = Depends(db_config.get_db)):
-    return crud.get_persons(db, skip, limit)
+@app.post("/people", response_model=schemas.Person)
+def create_person(person: schemas.PersonCreate):
+    try:
+        return crud.create_person(person)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

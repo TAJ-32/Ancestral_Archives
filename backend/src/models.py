@@ -5,97 +5,49 @@ Each class corresponds to a table
 Basically builds the ORM structure so we can do things with the database using Python
 """
 
-from sqlalchemy import Column, Integer, String, Text, Date, ForeignKey
-from sqlalchemy.orm import relationship
-from db_config import Base  # Assuming database.py sets up SQLAlchemy's Base
+from django.db import models
 
-class Person(Base):
-    __tablename__ = "person"
+class Person(models.Model):
+    first_name = models.TextField()
+    last_name = models.TextField()
+    age = models.IntegerField()
+    birth_date = models.DateField()
+    country_origin = models.TextField()
+    state_origin = models.TextField()
+    city_origin = models.TextField()
+    country_current = models.TextField()
+    state_current = models.TextField()
+    city_current = models.TextField()
 
-    person_id = Column(Integer, primary_key=True, index=True)
-    first_name = Column(Text, nullable=False)
-    last_name = Column(Text, nullable=False)
-    age = Column(Integer)
-    birth_date = Column(Date)
-    country_origin = Column(Text)
-    state_origin = Column(Text)
-    city_origin = Column(Text)
-    country_current = Column(Text)
-    state_current = Column(Text)
-    city_current = Column(Text)
+class Bio(models.Model):
+    bio = models.TextField()
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
 
-    bio = relationship("Bio", back_populates="person", cascade="all, delete")
-    stories = relationship("Story", back_populates="person", cascade="all, delete")
+class Story(models.Model):
+    story_name = models.TextField()
+    story_text = models.TextField()
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
 
+class Country(models.Model):
+    country_name = models.TextField()
 
-class Bio(Base):
-    __tablename__ = "bio"
+class State(models.Model):
+    state_name = models.TextField()
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
-    bio_id = Column(Integer, primary_key=True, index=True)
-    bio = Column(Text, nullable=False)
-    person_id = Column(Integer, ForeignKey("person.person_id", ondelete="CASCADE"))
+class City(models.Model):
+    city_name = models.TextField()
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
 
-    person = relationship("Person", back_populates="bio")
+class Religion(models.Model):
+    religion_name = models.TextField()
 
+class Race(models.Model):
+    race_name = models.TextField()
 
-class Story(Base):
-    __tablename__ = "story"
+class Ethnicity(models.Model):
+    ethnicity_name = models.TextField()
 
-    story_id = Column(Integer, primary_key=True, index=True)
-    story_name = Column(Text, nullable=False)
-    story_text = Column(Text, nullable=False)
-    person_id = Column(Integer, ForeignKey("person.person_id", ondelete="CASCADE"))
-
-    person = relationship("Person", back_populates="stories")
-
-
-class Country(Base):
-    __tablename__ = "country"
-
-    country_id = Column(Integer, primary_key=True, index=True)
-    country_name = Column(Text, nullable=False)
-
-
-class State(Base):
-    __tablename__ = "state"
-
-    state_id = Column(Integer, primary_key=True, index=True)
-    state_name = Column(Text, nullable=False)
-    country_id = Column(Integer, ForeignKey("country.country_id", ondelete="CASCADE"))
-
-
-class City(Base):
-    __tablename__ = "city"
-
-    city_id = Column(Integer, primary_key=True, index=True)
-    city_name = Column(Text, nullable=False)
-    country_id = Column(Integer, ForeignKey("country.country_id", ondelete="CASCADE"))
-    state_id = Column(Integer, ForeignKey("state.state_id", ondelete="CASCADE"))
-
-
-class Religion(Base):
-    __tablename__ = "religion"
-
-    religion_id = Column(Integer, primary_key=True, index=True)
-    religion_name = Column(Text, nullable=False)
-
-
-class Race(Base):
-    __tablename__ = "race"
-
-    race_id = Column(Integer, primary_key=True, index=True)
-    race_name = Column(Text, nullable=False)
-
-
-class Ethnicity(Base):
-    __tablename__ = "ethnicity"
-
-    ethnicity_id = Column(Integer, primary_key=True, index=True)
-    ethnicity_name = Column(Text, nullable=False)
-
-
-class Gender(Base):
-    __tablename__ = "gender"
-
-    gender_id = Column(Integer, primary_key=True, index=True)
-    gender_name = Column(Text, nullable=False)
+class Gender(models.Model):
+    gender_name = models.TextField()

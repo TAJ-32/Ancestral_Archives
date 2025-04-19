@@ -8,3 +8,5 @@ chmod +x generate_env.sh
 
 # Build and run Docker containers
 docker-compose up --build
+
+sleep 60
