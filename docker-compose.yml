@@ -33,6 +33,7 @@ services:
       - ./backend/.env
     volumes:
       - ./backend:/app
+      - ./backend/src:/app/src
     ports:
       - "8000:8000"
     command: >
@@ -53,9 +54,6 @@ services:
       context: ./backend  # Path to the FastAPI Dockerfile
       dockerfile: Dockerfile.fastapi  # Name of the FastAPI-specific Dockerfile
     container_name: fastapi
-    environment:
-      - DJANGO_SETTINGS_MODULE=src.backend.settings
-      - PYTHONPATH=/app  # Adding the PYTHONPATH environment variable
     depends_on:
       django:
         condition: service_healthy 
