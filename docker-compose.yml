@@ -7,7 +7,6 @@ services:
     restart: always
     volumes:
       - ./db/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - ./backend/.env
@@ -40,6 +39,7 @@ services:
       sh -c "/app/wait-for-it.sh db:5432 --timeout=60 -- 
             python /app/src/manage.py makemigrations &&
             python /app/src/manage.py migrate &&
+            python /app/src/manage.py loaddata src/models/fixtures/initial_data.json &&
             python /app/src/manage.py runserver 0.0.0.0:8000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000"]

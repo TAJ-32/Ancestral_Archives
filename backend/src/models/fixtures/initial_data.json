@@ -1,0 +1,688 @@
+[
+    {
+      "model": "models.country",
+      "pk": 1,
+      "fields": {
+        "country_name": "United States"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 2,
+      "fields": {
+        "country_name": "Canada"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 3,
+      "fields": {
+        "country_name": "Mexico"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 4,
+      "fields": {
+        "country_name": "Germany"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 5,
+      "fields": {
+        "country_name": "France"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 6,
+      "fields": {
+        "country_name": "Italy"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 7,
+      "fields": {
+        "country_name": "Brazil"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 8,
+      "fields": {
+        "country_name": "India"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 9,
+      "fields": {
+        "country_name": "China"
+      }
+    },
+    {
+      "model": "models.country",
+      "pk": 10,
+      "fields": {
+        "country_name": "Australia"
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 1,
+      "fields": {
+        "state_name": "California",
+        "country": 1
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 2,
+      "fields": {
+        "state_name": "New York",
+        "country": 1
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 3,
+      "fields": {
+        "state_name": "Quebec",
+        "country": 2
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 4,
+      "fields": {
+        "state_name": "Ontario",
+        "country": 2
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 5,
+      "fields": {
+        "state_name": "Jalisco",
+        "country": 3
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 6,
+      "fields": {
+        "state_name": "Bavaria",
+        "country": 4
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 7,
+      "fields": {
+        "state_name": "Berlin",
+        "country": 4
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 8,
+      "fields": {
+        "state_name": "Paris",
+        "country": 5
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 9,
+      "fields": {
+        "state_name": "Lazio",
+        "country": 6
+      }
+    },
+    {
+      "model": "models.state",
+      "pk": 10,
+      "fields": {
+        "state_name": "S\u00e3o Paulo",
+        "country": 7
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 1,
+      "fields": {
+        "city_name": "Los Angeles",
+        "country": 1,
+        "state": 1
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 2,
+      "fields": {
+        "city_name": "New York City",
+        "country": 1,
+        "state": 2
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 3,
+      "fields": {
+        "city_name": "Montreal",
+        "country": 2,
+        "state": 3
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 4,
+      "fields": {
+        "city_name": "Toronto",
+        "country": 2,
+        "state": 4
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 5,
+      "fields": {
+        "city_name": "Guadalajara",
+        "country": 3,
+        "state": 5
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 6,
+      "fields": {
+        "city_name": "Munich",
+        "country": 4,
+        "state": 6
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 7,
+      "fields": {
+        "city_name": "Berlin City",
+        "country": 4,
+        "state": 7
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 8,
+      "fields": {
+        "city_name": "Paris City",
+        "country": 5,
+        "state": 8
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 9,
+      "fields": {
+        "city_name": "Rome",
+        "country": 6,
+        "state": 9
+      }
+    },
+    {
+      "model": "models.city",
+      "pk": 10,
+      "fields": {
+        "city_name": "S\u00e3o Paulo City",
+        "country": 7,
+        "state": 10
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 1,
+      "fields": {
+        "religion_name": "Christianity"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 2,
+      "fields": {
+        "religion_name": "Islam"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 3,
+      "fields": {
+        "religion_name": "Hinduism"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 4,
+      "fields": {
+        "religion_name": "Buddhism"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 5,
+      "fields": {
+        "religion_name": "Sikhism"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 6,
+      "fields": {
+        "religion_name": "Judaism"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 7,
+      "fields": {
+        "religion_name": "Atheism"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 8,
+      "fields": {
+        "religion_name": "Shinto"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 9,
+      "fields": {
+        "religion_name": "Taoism"
+      }
+    },
+    {
+      "model": "models.religion",
+      "pk": 10,
+      "fields": {
+        "religion_name": "Zoroastrianism"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 1,
+      "fields": {
+        "race_name": "Caucasian"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 2,
+      "fields": {
+        "race_name": "Hispanic"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 3,
+      "fields": {
+        "race_name": "African American"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 4,
+      "fields": {
+        "race_name": "Asian"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 5,
+      "fields": {
+        "race_name": "Native American"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 6,
+      "fields": {
+        "race_name": "Pacific Islander"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 7,
+      "fields": {
+        "race_name": "Middle Eastern"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 8,
+      "fields": {
+        "race_name": "Latino"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 9,
+      "fields": {
+        "race_name": "Mixed Race"
+      }
+    },
+    {
+      "model": "models.race",
+      "pk": 10,
+      "fields": {
+        "race_name": "Other"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 1,
+      "fields": {
+        "ethnicity_name": "White"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 2,
+      "fields": {
+        "ethnicity_name": "Black"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 3,
+      "fields": {
+        "ethnicity_name": "Asian"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 4,
+      "fields": {
+        "ethnicity_name": "Hispanic"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 5,
+      "fields": {
+        "ethnicity_name": "Middle Eastern"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 6,
+      "fields": {
+        "ethnicity_name": "Native American"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 7,
+      "fields": {
+        "ethnicity_name": "Jewish"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 8,
+      "fields": {
+        "ethnicity_name": "Romani"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 9,
+      "fields": {
+        "ethnicity_name": "Latino"
+      }
+    },
+    {
+      "model": "models.ethnicity",
+      "pk": 10,
+      "fields": {
+        "ethnicity_name": "Jewish"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 1,
+      "fields": {
+        "gender_name": "Male"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 2,
+      "fields": {
+        "gender_name": "Female"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 3,
+      "fields": {
+        "gender_name": "Non-binary"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 4,
+      "fields": {
+        "gender_name": "Transgender Male"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 5,
+      "fields": {
+        "gender_name": "Transgender Female"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 6,
+      "fields": {
+        "gender_name": "Genderfluid"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 7,
+      "fields": {
+        "gender_name": "Agender"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 8,
+      "fields": {
+        "gender_name": "Bigender"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 9,
+      "fields": {
+        "gender_name": "Two-Spirit"
+      }
+    },
+    {
+      "model": "models.gender",
+      "pk": 10,
+      "fields": {
+        "gender_name": "Other"
+      }
+    },
+    {
+        "model": "models.person",
+        "pk": 1,
+        "fields": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "age": 35,
+        "birth_date": "1989-01-15",
+        "country_origin": "United States",
+        "state_origin": "California",
+        "city_origin": "Los Angeles",
+        "country_current": "United States",
+        "state_current": "California",
+        "city_current": "Los Angeles"
+        }
+    },
+    {
+        "model": "models.person",
+        "pk": 2,
+        "fields": {
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "age": 28,
+        "birth_date": "1995-03-22",
+        "country_origin": "Canada",
+        "state_origin": "Quebec",
+        "city_origin": "Montreal",
+        "country_current": "Canada",
+        "state_current": "Ontario",
+        "city_current": "Toronto"
+        }
+    },
+    {
+        "model": "models.person",
+        "pk": 3,
+        "fields": {
+        "first_name": "Carlos",
+        "last_name": "Gomez",
+        "age": 41,
+        "birth_date": "1982-09-10",
+        "country_origin": "Mexico",
+        "state_origin": "Jalisco",
+        "city_origin": "Guadalajara",
+        "country_current": "United States",
+        "state_current": "New York",
+        "city_current": "New York City"
+        }
+    },
+    {
+        "model": "models.person",
+        "pk": 4,
+        "fields": {
+        "first_name": "Mary",
+        "last_name": "Johnson",
+        "age": 33,
+        "birth_date": "1990-07-05",
+        "country_origin": "United States",
+        "state_origin": "New York",
+        "city_origin": "New York City",
+        "country_current": "Germany",
+        "state_current": "Berlin",
+        "city_current": "Berlin City"
+        }
+    },
+    {
+        "model": "models.person",
+        "pk": 5,
+        "fields": {
+        "first_name": "Ava",
+        "last_name": "Williams",
+        "age": 24,
+        "birth_date": "1999-12-11",
+        "country_origin": "United States",
+        "state_origin": "California",
+        "city_origin": "Los Angeles",
+        "country_current": "France",
+        "state_current": "Paris",
+        "city_current": "Paris City"
+        }
+    },
+    {
+        "model": "models.bio",
+        "pk": 1,
+        "fields": {
+        "bio": "I love traveling and meeting new people.",
+        "person": 1
+        }
+    },
+    {
+        "model": "models.bio",
+        "pk": 2,
+        "fields": {
+        "bio": "I am passionate about tech and innovation.",
+        "person": 2
+        }
+    },
+    {
+        "model": "models.bio",
+        "pk": 3,
+        "fields": {
+        "bio": "I enjoy cooking and spending time with family.",
+        "person": 3
+        }
+    },
+    {
+        "model": "models.bio",
+        "pk": 4,
+        "fields": {
+        "bio": "Avid reader and traveler.",
+        "person": 4
+        }
+    },
+    {
+        "model": "models.bio",
+        "pk": 5,
+        "fields": {
+        "bio": "I love exploring new cultures and languages.",
+        "person": 5
+        }
+    },
+    {
+        "model": "models.story",
+        "pk": 1,
+        "fields": {
+        "story_name": "The Great Adventure",
+        "story_text": "A thrilling adventure across Europe.",
+        "person": 1
+        }
+    },
+    {
+        "model": "models.story",
+        "pk": 2,
+        "fields": {
+        "story_name": "Tech Innovations",
+        "story_text": "My journey as a startup founder.",
+        "person": 2
+        }
+    },
+    {
+        "model": "models.story",
+        "pk": 3,
+        "fields": {
+        "story_name": "Family First",
+        "story_text": "A story of family, love, and bonding.",
+        "person": 3
+        }
+    },
+    {
+        "model": "models.story",
+        "pk": 4,
+        "fields": {
+        "story_name": "The Lost City",
+        "story_text": "A story of discovering an ancient city in the jungle.",
+        "person": 4
+        }
+    },
+    {
+        "model": "models.story",
+        "pk": 5,
+        "fields": {
+        "story_name": "Cultural Exploration",
+        "story_text": "Living in a different country and immersing in their culture.",
+        "person": 5
+        }
+    }
+    
+  ]

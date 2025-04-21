@@ -19,7 +19,8 @@ RUN pip install --no-cache-dir -r requirements.txt --retries 10 --timeout 60
 # Copy the application code
 COPY . /app/
 #just being extra safe that .env gets to the right place
-COPY .env /app/.env 
+COPY .env /app/.env
+COPY ./src /app/src 
 
 # Copy wait-for-it.sh for DB waiting
 COPY ./wait-for-it.sh /app/wait-for-it.sh
