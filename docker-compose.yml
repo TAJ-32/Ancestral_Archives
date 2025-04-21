@@ -35,7 +35,7 @@ services:
       - ./backend:/app
       - ./backend/src:/app/src
     ports:
-      - "8000:8000"
+      - "8001:8000"
     command: >
       sh -c "/app/wait-for-it.sh db:5432 --timeout=60 -- 
             python /app/src/manage.py makemigrations &&
@@ -65,10 +65,10 @@ services:
     volumes:
       - ./backend:/app
     ports:
-      - "8001:8000"  # Exposing FastAPI on a different port (8001)
+      - "8000:8000"  # Exposing FastAPI on a different port (8001)
     command: >
       sh -c "/app/wait-for-it.sh django:8000 --timeout=60 -- 
-            python -m src.main"
+            uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"
 
   frontend:
     build:

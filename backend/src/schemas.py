@@ -28,7 +28,7 @@ class Person(PersonBase):
     id: int  # Assuming Django default ID field is used
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- BIO ----------
@@ -43,7 +43,7 @@ class Bio(BioBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- STORY ----------
@@ -59,7 +59,7 @@ class Story(StoryBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- COUNTRY ----------
@@ -73,7 +73,7 @@ class Country(CountryBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- STATE ----------
@@ -88,7 +88,7 @@ class State(StateBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- CITY ----------
@@ -104,7 +104,7 @@ class City(CityBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- RELIGION ----------
@@ -118,7 +118,7 @@ class Religion(ReligionBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- RACE ----------
@@ -132,7 +132,7 @@ class Race(RaceBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- ETHNICITY ----------
@@ -146,7 +146,7 @@ class Ethnicity(EthnicityBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # ---------- GENDER ----------
@@ -160,4 +160,4 @@ class Gender(GenderBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

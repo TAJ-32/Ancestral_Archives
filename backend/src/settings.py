@@ -19,9 +19,11 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-dotenv_path = Path(__file__).resolve().parents[2] / '.env'
+dotenv_path = Path(__file__).resolve().parents[1] / '.env'
 load_dotenv(dotenv_path)
 
+print("DOTENV PATH:", dotenv_path)
+print("PWD:", Path.cwd())
 print("PG PASSWORD: ", os.getenv('POSTGRES_PASSWORD', 'password'))
 
 

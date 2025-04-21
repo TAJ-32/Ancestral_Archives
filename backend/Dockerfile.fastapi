@@ -34,5 +34,6 @@ RUN chmod 644 /app/.env
 EXPOSE 8000
 
 # Command to start FastAPI using Uvicorn
-CMD ["python", "-m", "src/main.py"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
 
