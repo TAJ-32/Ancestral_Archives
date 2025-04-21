@@ -19,11 +19,12 @@ services:
       retries: 5
       start_period: 30s
 
-  backend:
+  # Django service
+  django:
     build: 
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: backend
+      context: ./backend  # Path to the backend Django Dockerfile
+      dockerfile: src/backend/Dockerfile.django # Name of the Django-specific Dockerfile
+    container_name: django
     depends_on:
       db:
         condition: service_healthy
@@ -38,7 +39,38 @@ services:
       sh -c "/app/wait-for-it.sh db:5432 --timeout=60 -- 
             python /app/src/manage.py makemigrations &&
             python /app/src/manage.py migrate &&
-            uvicorn src.main:app --host 0.0.0.0 --port 8000"
+            python /app/src/manage.py runserver 0.0.0.0:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # FastAPI service
+  fastapi:
+    build: 
+      context: ./backend  # Path to the FastAPI Dockerfile
+      dockerfile: src/Dockerfile.fastapi  # Name of the FastAPI-specific Dockerfile
+    container_name: fastapi
+    environment:
+      - DJANGO_SETTINGS_MODULE=src.backend.settings
+      - PYTHONPATH=/app  # Adding the PYTHONPATH environment variable
+    depends_on:
+      django:
+        condition: service_healthy 
+      db:
+        condition: service_healthy
+    restart: always
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8001:8000"  # Exposing FastAPI on a different port (8001)
+    command: >
+      sh -c "/app/wait-for-it.sh django:8000 --timeout=60 -- 
+            python -m src.main"
 
   frontend:
     build:
@@ -49,7 +81,7 @@ services:
     ports:
       - "80:80"  # Serve the static files via Nginx
     depends_on:
-      - backend
+      - django
 
 volumes:
   postgres_data:

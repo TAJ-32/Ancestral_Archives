@@ -1,0 +1,38 @@
+# Dockerfile.fastapi
+# This is just the API server to grab data from the database
+
+FROM python:3.12.4
+
+WORKDIR /app
+# Copy the requirements.txt file into the container
+COPY requirements.txt /app/
+
+# Install requirements
+COPY requirements.txt . 
+RUN pip install --upgrade pip 
+RUN pip install --no-cache-dir -r requirements.txt --retries 10 --timeout 60
+
+
+# Copy the source code
+COPY ./src /app/src
+# Copy application code
+COPY . /app/
+#just being extra safe that .env gets to the right place
+COPY .env /app/.env 
+
+# ✅ Set PYTHONPATH so Python can find 'backend'
+ENV PYTHONPATH="/app/src"
+
+# Copy wait-for-it.sh for DB waiting
+COPY ./wait-for-it.sh /app/wait-for-it.sh
+RUN chmod +x /app/wait-for-it.sh
+
+# Make sure .env file has correct permissions
+RUN chmod 644 /app/.env
+
+# Expose FastAPI port
+EXPOSE 8000
+
+# Command to start FastAPI using Uvicorn
+CMD ["python", "-m", "src/main.py"]
+

@@ -1,0 +1,35 @@
+# Dockerfile.django
+# This service runs the Django server and applies migrations
+# Basically, no endpoints are exposed from this service, it's just used to internally
+# to manage the database schema and execute migrations for the db container
+# Really, I just use Django to have the admin UI for managing data
+# Still confused on what the point of migrations are and how they work
+
+FROM python:3.12.4
+
+WORKDIR /app
+# Copy the requirements.txt file into the container
+COPY requirements.txt /app/
+
+# Install requirements for Django
+COPY requirements.txt . 
+RUN pip install --upgrade pip 
+RUN pip install --no-cache-dir -r requirements.txt --retries 10 --timeout 60
+
+# Copy the application code
+COPY . /app/
+#just being extra safe that .env gets to the right place
+COPY .env /app/.env 
+
+# Copy wait-for-it.sh for DB waiting
+COPY ./wait-for-it.sh /app/wait-for-it.sh
+RUN chmod +x /app/wait-for-it.sh
+
+# Make sure .env file has correct permissions
+RUN chmod 644 /app/.env
+
+# Expose Django port
+EXPOSE 8000
+
+# Command to wait for DB, make migrations, and run the Django app
+CMD ["sh", "-c", "/app/wait-for-it.sh db:5432 --timeout=60 -- python /app/src/manage.py makemigrations && python /app/src/manage.py migrate && python /app/src/manage.py runserver 0.0.0.0:8000"]
