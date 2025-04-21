@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend',
+    'models',
     'rest_framework',
     'corsheaders',
 ]
@@ -63,7 +63,7 @@ MIDDLEWARE = [
 ]
 CORS_ALLOW_ALL_ORIGINS = True  # Or restrict to your frontend domain
 
-ROOT_URLCONF = 'backend.urls'
+# ROOT_URLCONF = 'src.urls'
 
 TEMPLATES = [
     {
@@ -80,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+# WSGI_APPLICATION = 'src.wsgi.application'
 
 
 # Database

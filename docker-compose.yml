@@ -23,7 +23,7 @@ services:
   django:
     build: 
       context: ./backend  # Path to the backend Django Dockerfile
-      dockerfile: src/backend/Dockerfile.django # Name of the Django-specific Dockerfile
+      dockerfile: Dockerfile.django # Name of the Django-specific Dockerfile
     container_name: django
     depends_on:
       db:
@@ -51,7 +51,7 @@ services:
   fastapi:
     build: 
       context: ./backend  # Path to the FastAPI Dockerfile
-      dockerfile: src/Dockerfile.fastapi  # Name of the FastAPI-specific Dockerfile
+      dockerfile: Dockerfile.fastapi  # Name of the FastAPI-specific Dockerfile
     container_name: fastapi
     environment:
       - DJANGO_SETTINGS_MODULE=src.backend.settings

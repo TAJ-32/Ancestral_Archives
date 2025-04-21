@@ -1,15 +1,16 @@
 from typing import List
+from fastapi import FastAPI, HTTPException
 import django
 import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__))))
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
+# Setup Django ORM
 django.setup()
 
 from . import crud, schemas
-from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 

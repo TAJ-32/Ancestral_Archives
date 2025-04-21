@@ -4,7 +4,8 @@ Used by API routes to create, read, update, and delete data
 Separates the logic between the database and FastAPI endpoints
 """
 
-from . import models, schemas
+from models import models
+from . import schemas
 from django.db import transaction
 
 # ----- PERSON -----
